@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Price Prediction</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #0c1022;
+            font-family: Arial, sans-serif;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid #fff;
+            box-sizing: border-box;
+            font-size: 15px;
+            background: transparent;
+            color: #d400d4;
+        }
+
+        .form-container {
+            width: 600px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .form-columns {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-column {
+            flex-basis: 45%;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-row label {
+            flex: 0 0 150px;
+            font-weight: bold;
+        }
+
+        .form-row select,
+        .form-row input[type="text"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .form-actions input[type="submit"] {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        input[type=submit] {
+            width: 100%;
+            height: 50px;
+            border: none;
+            outline: none;
+            border-radius: 50px;
+            background-color: #00cfff;
+            color: black;
+            font-size: large;
+            font-weight: 600;
+            padding: 14px 20px;
+            margin: 8px 0;
+            cursor: pointer;
+        }
+
+        .form-actions input[type="submit"]:hover {
+            background-color: #d400d4;
+        }
+
+        .form-container {
+            position: relative;
+            width: 700px;
+            height: 720px;
+            background: rgba(0, 0, 0.75);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-inline: 32px;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: "";
+            position: absolute;
+            height: 2000px;
+            width: 2000px;
+            background: conic-gradient(transparent, transparent, transparent, #d400d4);
+            animation: animate 4s linear infinite;
+            animation-delay: -2s;
+        }
+
+        .form-container::after {
+            content: "";
+            position: absolute;
+            height: 2000px;
+            width: 2000px;
+            background: conic-gradient(transparent, transparent, transparent, #00cfff);
+            animation: animate 4s linear infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .image {
+            position: absolute;
+            inset: 5px;
+            background-color: #0c1022;
+            z-index: 1;
+            border-radius: 16px;
+            padding: 25px;
+        }
+
+        h1,
+        label {
+            color: #fff;
+        }
+
+
+        p {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 24px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="image">
+            <h1>Laptop Price Prediction</h1>
+            <form method="GET" action="/predict_price">
+                <div class="form-columns">
+                    <div class="form-column">
+                        <div class="form-row">
+                            <label for="Ram">Ram:</label>
+                            <select name="Ram" id="Ram">
+                                <option value="2">2</option>
+                                <option value="4">4</option>
+                                <option value="6">6</option>
+                                <option value="8">8</option>
+                                <option value="12">12</option>
+                                <option value="16">16</option>
+                                <option value="24">24</option>
+                                <option value="32">32</option>
+                                <option value="64">64</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="Weight">Weight:</label>
+                            <input type="text" name="Weight" id="Weight">
+                        </div>
+                        <div class="form-row">
+                            <label for="Touchscreen">Touchscreen:</label>
+                            <select name="Touchscreen" id="Touchscreen">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="IPS">IPS:</label>
+                            <select name="Ips" id="Ips">
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="Resolution">Resolution:</label>
+                            <select name="resolution" id="resolution">
+                                <option value="1920x1200">1920x1200</option>
+                                <option value="1920x1080">1920x1080</option>
+                                <option value="1366x768">1366x768</option>
+                                <option value="1600x900">1600x900</option>
+                                <option value="3840x2160">3840x2160</option>
+                                <option value="3200x1800">3200x1800</option>
+                                <option value="2560x1600">2560x1600</option>
+                                <option value="2560x1440">2560x1440</option>
+                                <option value="2304x1440">2304x1440</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="Inches">Inches:</label>
+                            <input type="text" name="inches" id="inches">
+                        </div>
+                        <div class="form-row">
+                            <label for="TypeName">TypeName:</label>
+                            <select name="TypeName" id="TypeName">
+                                <option value="2 in 1 Convertible">2 in 1 Convertible</option>
+                                <option value="Gaming">Gaming</option>
+                                <option value="Netbook">Netbook</option>
+                                <option value="Notebook">Notebook</option>
+                                <option value="Ultrabook">Ultrabook</option>
+                                <option value="Workstation">Workstation</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-column">
+                        <div class="form-row">
+                            <label for="HDD">HDD:</label>
+                            <select name="HDD" id="HDD">
+                                <option value="0">0</option>
+                                <option value="128">128</option>
+                                <option value="256">256</option>
+                                <option value="512">512</option>
+                                <option value="1024">1024</option>
+                                <option value="2048">2048</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="SSD">SSD:</label>
+                            <select name="SSD" id="SSD">
+                                <option value="0">0</option>
+                                <option value="8">8</option>
+                                <option value="128">128</option>
+                                <option value="256">256</option>
+                                <option value="512">512</option>
+                                <option value="1024">1024</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="Company">Company:</label>
+                            <select name="Company" id="Company">
+                                <option value="Acer">Acer</option>
+                                <option value="Apple">Apple</option>
+                                <option value="Asus">Asus</option>
+                                <option value="Chuwi">Chuwi</option>
+                                <option value="Dell">Dell</option>
+                                <option value="Fujitsu">Fujitsu</option>
+                                <option value="Google">Google</option>
+                                <option value="HP">HP</option>
+                                <option value="Huawei">Huawei</option>
+                                <option value="LG">LG</option>
+                                <option value="Lenovo">Lenovo</option>
+                                <option value="MSI">MSI</option>
+                                <option value="Mediacom">Mediacom</option>
+                                <option value="Microsoft">Microsoft</option>
+                                <option value="Razer">Razer</option>
+                                <option value="Samsung">Samsung</option>
+                                <option value="Toshiba">Toshiba</option>
+                                <option value="Xiaomi">Xiaomi</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="CpuBrand">CPU Brand:</label>
+                            <select name="Cpu_brand" id="Cpu_brand">
+                                <option value="AMD Processor">AMD Processor</option>
+                                <option value="Intel Core i3">Intel Core i3</option>
+                                <option value="Intel Core i5">Intel Core i5</option>
+                                <option value="Intel Core i7">Intel Core i7</option>
+                                <option value="Other Intel Processor">Other Intel Processor</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="GpuBrand">GPU Brand:</label>
+                            <select name="Gpu_brand" id="Gpu_brand">
+                                <option value="AMD">AMD</option>
+                                <option value="Intel">Intel</option>
+                                <option value="Nvidia">Nvidia</option>
+                            </select>
+                        </div>
+                        <div class="form-row">
+                            <label for="OS">OS:</label>
+                            <select name="os" id="os">
+                                <option value="Mac">Mac</option>
+                                <option value="Windows">Windows</option>
+                                <option value="Others/No OS/Linux">Others/No OS/Linux</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <input type="submit" value="Predict">
+                </div>
+            </form>
+            <p>The Total Price of your Laptop is: <b>{{prediction}} INR</b> Only. </p>
+        </div>
+    </div>
